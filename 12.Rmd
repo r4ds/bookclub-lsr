@@ -1,4 +1,4 @@
-# Why do we learn statistics?
+# Categorical data analysis.
 
 **Learning objectives:**
 

@@ -1,22 +1,16 @@
-# R4DS BOOKNAME Book Club
+# R4DS Learning Statistics with R Book Club
 
-FIND/REPLACE BOOKABBR, BOOKNAME, BOOKURL, BOOKAUTHORS, BOOKPUBLISHER, BOOKCOPYRIGHT, BOOKISBN, BOOKDOI, BOOKDAYS, BOOKTIMECST, BOOKCHANNELID, SIGNUPSHEETURL, TIMEANDDATEURL, STARTDATE, and PLAYLISTLINK THEN DELETE THIS SENTENCE.
+Welcome to the R4DS Learning Statistics with R Book Club!
 
-ALSO CONFIRM THE MEETING TIME INFO BELOW AND DELETE THIS SENTENCE.
-
-ALSO ADD PLACEHOLDERS FOR ALL CHAPTERS BY COPYING 01.Rmd (IDEALLY ALSO UPDATE TITLES WITHIN THE FILES), THEN DELETE THIS SENTENCE.
-
-Welcome to the R4DS BOOKNAME Book Club!
-
-We are working together to read [_BOOKNAME_](BOOKURL) by BOOKAUTHORS (BOOKPUBLISHER, copyright BOOKCOPYRIGHT, [BOOKISBN](BOOKDOI)).
-Join the [#book_club-BOOKABBR](https://rfordatascience.slack.com/archives/BOOKCHANNELID) channel on the [R4DS Slack](https://r4ds.io/join) to participate.
-As we read, we are producing [notes about the book](https://r4ds.io/BOOKABBR).
+We are working together to read [_Learning Statistics with R_](https://learningstatisticswithr.com/) by Danielle Navarro (copyright 2019, released under a creative commons licence (CC BY-SA 4.0)).
+Join the [#book_club-lsr](https://rfordatascience.slack.com/archives/C04FDL1HV7B) channel on the [R4DS Slack](https://r4ds.io/join) to participate.
+As we read, we are producing [notes about the book](https://r4ds.io/lsr).
 
 ## Meeting Schedule
 
-If you would like to present, please see the sign-up sheet for your cohort (linked below, and pinned in the [#book_club-BOOKABBR](https://rfordatascience.slack.com/archives/BOOKCHANNELID) channel on Slack)!
+If you would like to present, please see the sign-up sheet for your cohort (linked below, and pinned in the [#book_club-lsr](https://rfordatascience.slack.com/archives/C04FDL1HV7B) channel on Slack)!
 
-- [Cohort 1](SIGNUPSHEETURL) (started STARTDATE): [BOOKDAYS, BOOKTIMECST CST/CDT](TIMEANDDATEURL) | [meeting videos](PLAYLISTLINK)
+- [Cohort 1](https://docs.google.com/spreadsheets/d/1AkrE6btOJWg-oq1LaF-QNM_l7fPsPJGQzRXYuc9m8X8/edit?usp=sharing) (started STARTDATE): [BOOKDAYS, BOOKTIMECST CST/CDT](TIMEANDDATEURL) | [meeting videos](https://www.youtube.com/playlist?list=PL3x6DOfs2NGiuZtoxH4AMSs1ipevg0YFH)
 
 <hr>
 
@@ -29,7 +23,7 @@ To present, follow these instructions:
 Do these steps once:
 
 1. [Setup Git and GitHub to work with RStudio](https://github.com/r4ds/bookclub-setup) (click through for detailed, step-by-step instructions; I recommend checking this out even if you're pretty sure you're all set).
-2. `usethis::create_from_github("r4ds/bookclub-BOOKABBR")` (cleanly creates your own copy of this repository).
+2. `usethis::create_from_github("r4ds/bookclub-lsr")` (cleanly creates your own copy of this repository).
 
 Do these steps each time you present another chapter:
 
@@ -45,5 +39,4 @@ Do these steps each time you present another chapter:
 10. When your PR has been accepted ("merged"), `usethis::pr_finish()` to close out your branch and prepare your local repository for future work.
 11. Now that your local copy is up-to-date with the main repo, you need to update your remote fork. Run `gert::git_push("origin")` or click the `Push` button on the `Git` tab of Rstudio.
 
-When your PR is checked into the main branch, the bookdown site will rebuild, adding your slides to [this site](https://r4ds.io/BOOKABBR).
-
+When your PR is checked into the main branch, the bookdown site will rebuild, adding your slides to [this site](https://r4ds.io/lsr).

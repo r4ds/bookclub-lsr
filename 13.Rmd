@@ -1,4 +1,4 @@
-# Why do we learn statistics?
+# Comparing two means.
 
 **Learning objectives:**
 

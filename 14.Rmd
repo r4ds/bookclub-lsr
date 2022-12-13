@@ -1,4 +1,4 @@
-# Why do we learn statistics?
+# Comparing several means (one-way ANOVA).
 
 **Learning objectives:**
 

@@ -1,4 +1,4 @@
-# Why do we learn statistics?
+# Getting started with R.
 
 **Learning objectives:**
 

@@ -1,4 +1,4 @@
-# Why do we learn statistics?
+# Hypothesis testing.
 
 **Learning objectives:**
 

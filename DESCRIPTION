@@ -15,4 +15,5 @@ Depends:
 Imports: 
     bookdown,
     HistData,
-    rmarkdown
+    rmarkdown,
+    tvthemes

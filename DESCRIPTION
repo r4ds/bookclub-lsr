@@ -10,7 +10,8 @@ Authors@R: c(
   )
 URL: https://r4ds.github.io/bookclub-lsr, https://github.com/r4ds/bookclub-lsr
 Depends:
-    R (>= 3.1.0)
+    R (>= 3.1.0),
+    tidyverse
 Imports: 
     bookdown,
     HistData,

@@ -10,6 +10,7 @@ Depends:
 Imports: 
     bookdown,
     HistData,
+    lsr,
     rmarkdown,
     tidyverse
 Encoding: UTF-8

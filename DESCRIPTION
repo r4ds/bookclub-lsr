@@ -14,5 +14,6 @@ Imports:
     tvthemes,
     lsr,
     rmarkdown,
-    tidyverse
+    tidyverse,
+    ggthemes
 Encoding: UTF-8

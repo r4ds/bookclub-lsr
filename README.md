@@ -10,7 +10,7 @@ As we read, we are producing [notes about the book](https://r4ds.io/lsr).
 
 If you would like to present, please see the sign-up sheet for your cohort (linked below, and pinned in the [#book_club-lsr](https://rfordatascience.slack.com/archives/C04FDL1HV7B) channel on Slack)!
 
-- [Cohort 1](https://docs.google.com/spreadsheets/d/1wUN-kBK83rWKXfJ1ubklXWtRCMEau8T4tAlWAGW8b6g/edit?usp=sharing) (started 2023-04-05): [Wednesdays, 07:00 CST/CDT](https://www.timeanddate.com/worldclock/converter.html?iso=20230405T120000&p1=24&p2=1440&p3=44) | [meeting videos](https://www.youtube.com/playlist?list=PL3x6DOfs2NGiuZtoxH4AMSs1ipevg0YFH)
+- [Cohort 1](https://docs.google.com/spreadsheets/d/1wUN-kBK83rWKXfJ1ubklXWtRCMEau8T4tAlWAGW8b6g/edit?usp=sharing) (started 2023-04-05): [Wednesdays, 10:00 CST/CDT](https://www.timeanddate.com/worldclock/converter.html?iso=20230809T150000&p1=24&p2=1440&p3=215&p4=155&p5=54) | [meeting videos](https://www.youtube.com/playlist?list=PL3x6DOfs2NGiuZtoxH4AMSs1ipevg0YFH)
 
 <hr>
 

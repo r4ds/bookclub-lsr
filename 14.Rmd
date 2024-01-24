@@ -2,12 +2,265 @@
 
 **Learning objectives:**
 
-- THESE ARE NICE TO HAVE BUT NOT ABSOLUTELY NECESSARY
+- What ANOVA is
+- Build ANOVA from scratch
+- testing available functions 
 
-## SLIDE 1
 
-- ADD SLIDES AS SECTIONS (`##`).
-- TRY TO KEEP THEM RELATIVELY SLIDE-LIKE; THESE ARE NOTES, NOT THE BOOK ITSELF.
+## Introduction
+
+This is an introduction to the widely used statistical tool, the `Analysis of Variance (ANOVA)`. Initially developed by Sir Ronald Fisher in the early 20th century, the term ANOVA is somewhat misleading as it primarily deals with investigating differences in means, not variances. 
+
+The chapter focuses on the simplest form of ANOVA, known as `one-way ANOVA`, applicable when dealing with multiple groups of observations to discern variations in an outcome variable.
+
+
+
+## Example: Clinical Trial
+```{r}
+library(lsr)
+load("data/clinicaltrial.RData")
+str(clin.trial)
+```
+```{r}
+clin.trial
+```
+
+We look at the `effect of drug on mood.gain`
+
+```{r}
+library(tidyverse)
+clin.trial%>%
+  group_by(drug)%>%
+  reframe(avg_mood.gain=mean(mood.gain),
+          sd_mood.gain=sd(mood.gain))
+```
+```{r}
+gplots::plotmeans(formula = mood.gain ~ drug,  # plot mood.gain by drug
+             data = clin.trial,           # the data frame
+             xlab = "Drug Administered",  # x-axis label
+             ylab = "Mood Gain",          # y-axis label
+             n.label = FALSE  )
+```
+
+## Use ANOVA
+
+
+The Null hypothesis is:
+$$H_0: \text{it is true that } \mu_P=\mu_A=\mu_J$$
+While the alternative is:
+
+$$H_0: \text{it is NOT true that } \mu_P=\mu_A=\mu_J$$
+
+
+The Sample Variance of Y:
+$$Var(Y)=\frac{1}{N}\sum_{k=1}^G\sum_{i=1}^{N_k}(Y_{ik}-\bar{Y})^2$$
+### Example 2
+
+```{r}
+N<- 5 # number of people
+G<- 2 # groups
+```
+
+
+```{r}
+data2 <- tibble(name=c("Ann","Ben","Cat","Dan","Egg"),
+       person_p=seq_along(1:5),
+       group=c("cool","cool","cool","uncool","uncool"),
+       group_k=c(1,1,1,2,2),
+       index_i=c(1,2,3,1,2),
+       grumpiness_Yp=c(20,55,21,91,22)
+       )
+data2
+```
+$$Var(Y)=\frac{1}{N}\sum_{p=1}^{N}(Y_{p}-\bar{Y})^2$$
+
+
+
+## The sum of squares
+
+$$SS_{tot}=\sum_{k=1}^G\sum_{i=1}^{N_k}(Y_{ik}-\bar{Y})^2$$
+### Between-group sum of squares
+$$SS_{b}=\sum_{k=1}^G\sum_{i=1}^{N_k}(Y_{k}-\bar{Y})^2$$
+$$=\sum_{k=1}^G{N_k}(\bar{Y}_{k}-\bar{Y})^2$$
+$$SS_w+SS_b=SS_{tot}$$
+## The F-test
+
+$$df_b=G-1$$
+$$df_w=N-G$$
+$$MS_b=\frac{SS_b}{df_b}$$
+$$MS_w=\frac{SS_w}{df_w}$$
+
+$$F=\frac{MS_b}{MS_w}$$
+
+
+## Example3
+
+```{r}
+data3 <- tibble(group_k=c("placebo","placebo","placebo","anxifree","anxifree"),
+       outcome_Yk=c(0.5,0.3,0.1,0.6,0.4),
+       group_mean=c(0.45,0.45,0.45,0.72,0.72),
+       mean_dev=outcome_Yk-group_mean,
+       sqr_dev=mean_dev^2)
+data3
+```
+```{r}
+ss_w <- sum(data3$sqr_dev)
+ss_w
+```
+```{r}
+outcome <- clin.trial$mood.gain
+group <- clin.trial$drug
+tibble(outcome,group)
+```
+
+
+```{r}
+# ?tapply
+gp.means <- tapply(outcome,group,mean)
+```
+
+
+```{r}
+gp.means <- gp.means[group]
+```
+
+
+```{r}
+dev.from.gp.means <- outcome - gp.means
+squared.devs <- dev.from.gp.means ^2
+```
+```{r}
+Y <- clin.trial%>%
+  group_by(drug)%>%
+  reframe(mood.gain,
+          gp.means=mean(mood.gain),
+          dev.from.gp.means=mood.gain-gp.means,
+          squared.devs=(mood.gain-gp.means)^2,
+          sample_size=rep(6,length(drug)))
+
+Y
+```
+```{r}
+ssw<-sum(Y$squared.devs)
+ssw
+```
+
+```{r}
+grand_mean <- mean(Y$mood.gain)
+```
+
+
+```{r}
+data4 <- Y%>%
+  group_by(drug)%>%
+  reframe(group_mean=mean(mood.gain))%>%
+  mutate(grand_mean=grand_mean,
+         deviation=group_mean-grand_mean,
+         sqr_dev=deviation^2,
+         sample_size=c(6,6,6),
+         w_sqr=sample_size*sqr_dev)
+          
+data4
+```
+
+
+```{r}
+ssb <- sum(data4$w_sqr)
+ssb
+```
+
+```{r}
+ssw;ssb
+```
+```{r}
+G <- 3
+N<- 18
+dfb <- G-1
+dfw <- N-G
+```
+
+
+```{r}
+msb <- ssb/dfb
+msw <- ssw/dfw
+```
+
+
+F(2,15) = 18.6 
+```{r}
+f <- msb/msw
+f
+```
+
+?pf()
+
+```{r}
+pf( f, df1 = 2, df2 = 15, lower.tail = FALSE)
+```
+
+Reject the NULL hypothesis:
+```{r}
+pf( f, df1 = 2, df2 = 15, lower.tail = FALSE) < 0.05
+```
+## Testing available functions
+
+?aov()
+
+```{r}
+my.anova <- aov( formula = mood.gain ~ drug, 
+                 data = clin.trial ) 
+my.anova
+```
+```{r}
+names(my.anova)
+```
+
+```{r}
+summary(my.anova)
+```
+
+
+```{r}
+posthocPairwiseT( my.anova )
+```
+
+## Apply a correction for multiple comparisons
+
+###  Bonferroni corrections
+
+The corrected p-value is the result of multiply all your raw p-values by m, where m is the number of separate tests. Such as in the previous case we had to compare placebo vs drug1, placebo vs drug2, drug1 vs drug2; so we had 3 tests. 
+
+$${p}'=p*m$$
+${p}'< \alpha = 0.05$
+
+
+```{r}
+posthocPairwiseT( my.anova, 
+                  p.adjust.method = "bonferroni")
+```
+
+
+### Holm corrections
+
+Another method, pretending the tests are done sequentially. 
+
+$${p}'_j=j*p_j$$
+
+```{r}
+posthocPairwiseT( my.anova )
+```
+
+### Normality, Homogeneity of variance and Independence
+
+#### Welch one-way test
+F(2,)
+```{r}
+oneway.test(mood.gain ~ drug, data = clin.trial)
+```
+
+```{r}
+oneway.test(mood.gain ~ drug, data = clin.trial, var.equal = TRUE)
+```
 
 ## Meeting Videos
 

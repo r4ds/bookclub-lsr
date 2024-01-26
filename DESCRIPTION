@@ -10,6 +10,7 @@ Depends:
 Imports: 
     bookdown,
     ggthemes,
+    gplots,
     HistData,
     lsr,
     rmarkdown,

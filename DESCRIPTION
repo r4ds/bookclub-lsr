@@ -9,11 +9,11 @@ Depends:
     R (>= 3.1.0)
 Imports: 
     bookdown,
+    ggthemes,
+    here,
     HistData,
-    rmarkdown,
-    tvthemes,
     lsr,
     rmarkdown,
     tidyverse,
-    ggthemes
+    tvthemes
 Encoding: UTF-8

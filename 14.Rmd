@@ -18,7 +18,7 @@ The chapter focuses on the simplest form of ANOVA, known as `one-way ANOVA`, app
 ## Example: Clinical Trial
 ```{r}
 library(lsr)
-load(here::here("data/clinicaltrial.RData"))
+clin.trial <- readRDS("data/clintrial.rds")
 str(clin.trial)
 ```
 ```{r}
